@@ -17,18 +17,18 @@
 		}
 
 
-		private function setParams($statment, $parameters = array())
+		private function setParams($statament, $parameters = array())
 		{
 			foreach ($parameters as $key => $value) {
 
-				$this->setParam($key, $value);
+				$this->setParam($statament, $key, $value);
 			}
 		}
 
-		private function setParam($statment, $key, $value)
+		private function setParam($statament, $key, $value)
 		{
 
-			$statment->bindParam($key, $value);
+			$statament->bindParam($key, $value);
 		}
 
 		public function query($rawQuery, $params = array())
