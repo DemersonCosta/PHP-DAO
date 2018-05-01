@@ -39,7 +39,7 @@
 			return $this->dtcadastro;
 		}
 
-		public function setDtcadastro($value){
+		public function setDtcadastro($value){			
 			$this->dtcadastro = $value;
 		}
 
@@ -51,16 +51,9 @@
 					":ID"=>$id
 			));
 			//verifica se existe id no indice 0
-			if (isset($results[0])) {
-
-				$row = $results[0];
-
-				$this->setIdusuario($row['idusuario']);
-				$this->setDeslogin($row['deslogin']);
-				$this->setDessenha($row['dessenha']);
-				$this->setDtcadastro(new DateTime($row['dtcadastro']));
-			}
-
+			if (isset($results[0])) 			
+				$this->setData($results[0]);
+			
 		}
 
 		public static function getList(){
@@ -69,6 +62,7 @@
 
 			return $sql->select("SELECT * FROM tb_usuario ORDER BY idusuario");
 		}
+
 		public static function search($login){
 
 			$sql = new Sql();
@@ -86,20 +80,43 @@
 				"PASSWORD"=>$password
 			));
 			if (count($results) > 0) {
-
-				$row = $results[0];
-
-				$this->setIdusuario($row['idusuario']);
-				$this->setDeslogin($row['deslogin']);
-				$this->setDessenha($row['dessenha']);
-				$this->setDtcadastro(new DateTime($row['dtcadastro']));
-			}else{
 				
+				$this->setData($results[0]);
+
+			}else{
+
 				throw new Exception("Login e/ou senha inválidos");
 				
 			}
-
 		}
+
+		public function setData($data){
+
+			$this->setIdusuario($data['idusuario']);
+			$this->setDeslogin($data['deslogin']);
+			$this->setDessenha($data['dessenha']);
+			$this->setDtcadastro(new DateTime($data['dtcadastro']));
+		}
+
+		//inserir com procidere erro get
+		
+		/*public function insert(){
+
+			$sql = new Sql();
+
+		  $sql->query("INSERT INTO tb_usuario (deslogin, dessenha) VALUE(:LOGIN, :PASSOWORD)", array(
+				'LOGIN'=>$this->getDeslogin(),
+				'PASSOWORD'=>$this->getDessenha()
+			));
+			
+		}*/
+		
+		public function __construct($login = "", $password= ""){
+
+			$this->setDeslogin($login);
+			$this->setDessenha($password);
+		}
+		
 		public function __toString(){
 
 			return json_encode(array(
