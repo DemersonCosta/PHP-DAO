@@ -19,14 +19,14 @@
 	/*$usuario = new Usuario();
 	$usuario->login("João","2020");
 	echo $usuario;*/
-
-	$aluno = new Usuario();
-
-	//$aluno->setDeslogin("aluno");
-	//$aluno->setDessenha("2323@");
-
-
 	
+	/*$aluno = new Usuario("Kênia", "$%$#");
+	$aluno->insert();
+	echo $aluno;*/
+
+	$usuario = new Usuario();
+	$usuario->loadById(8);
+	$usuario->update("professor", "1029");
 
 	/*$sql = new Sql();
 	$usuarios = $sql->select("SELECT * FROM tb_usuario");
