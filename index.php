@@ -24,9 +24,14 @@
 	$aluno->insert();
 	echo $aluno;*/
 
-	$usuario = new Usuario();
+	/*$usuario = new Usuario();
 	$usuario->loadById(8);
-	$usuario->update("professor", "1029");
+	$usuario->update("professor", "1029");*/
+
+	/*$usuario = new Usuario();
+	$usuario->loadById(10);
+	$usuario->delete();
+	echo $usuario();*/
 
 	/*$sql = new Sql();
 	$usuarios = $sql->select("SELECT * FROM tb_usuario");
